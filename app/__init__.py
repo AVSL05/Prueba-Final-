@@ -6,6 +6,10 @@ from app.routes.auth import auth_bp
 from app.routes.donors import donors_bp
 import os
 from datetime import timedelta
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
 
 def create_app(config_name='development'):
     """Factory function para crear la aplicación Flask"""
@@ -66,16 +70,21 @@ def create_app(config_name='development'):
         
         # Crear usuario administrador por defecto si no existe
         from app.models import User, UserRole
-        admin_user = User.query.filter_by(email='admin@example.com').first()
+        
+        # Obtener credenciales desde variables de entorno
+        admin_email = os.getenv('ADMIN_EMAIL', 'admin@example.com')
+        admin_password = os.getenv('ADMIN_PASSWORD', 'Admin123!')
+        
+        admin_user = User.query.filter_by(email=admin_email).first()
         if not admin_user:
             admin_user = User(
-                email='admin@example.com',
+                email=admin_email,
                 role=UserRole.ADMIN
             )
-            admin_user.set_password('Admin123!')
+            admin_user.set_password(admin_password)
             db.session.add(admin_user)
             db.session.commit()
-            print("Usuario administrador creado: admin@example.com / Admin123!")
+            print(f"Usuario administrador creado: {admin_email}")
     
     return app
 

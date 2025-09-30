@@ -30,10 +30,31 @@ actfinalIDS/
 │   ├── __init__.py
 │   ├── test_app.py          # Pruebas principales
 │   └── test_basic.py        # Pruebas básicas
+├── .env                     # Variables de entorno (no subir al repo)
 ├── requirements.txt
 ├── pytest.ini
 └── registro.py              # Punto de entrada
 ```
+
+## ⚙️ Configuración
+
+### Variables de Entorno
+
+El sistema utiliza variables de entorno para configuración segura. Crea un archivo `.env` en la raíz del proyecto:
+
+```bash
+# Variables de entorno para producción
+ADMIN_EMAIL=admin@papusaurio.com
+ADMIN_PASSWORD=Papusaurio.123
+DATABASE_URL=postgresql://user:pass@localhost/db_name
+JWT_SECRET_KEY=JTWPapusaurio2024SecretKey
+SECRET_KEY=Secretkeypapu
+```
+
+**Importante:** 
+- Nunca subas el archivo `.env` al repositorio
+- Cambia las credenciales por defecto en producción
+- El archivo `.env` está incluido en `.gitignore`
 
 ## Modelos de Datos
 
