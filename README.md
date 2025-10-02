@@ -51,7 +51,8 @@ JWT_SECRET_KEY=JTWPapusaurio2024SecretKey
 SECRET_KEY=Secretkeypapu
 ```
 
-**Importante:** 
+**Importante:**
+
 - Nunca subas el archivo `.env` al repositorio
 - Cambia las credenciales por defecto en producción
 - El archivo `.env` está incluido en `.gitignore`

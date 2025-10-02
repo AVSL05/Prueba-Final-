@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager
 from app.models import db
 from app.routes.auth import auth_bp
 from app.routes.donors import donors_bp
+from app.routes.web import web_bp
 import os
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -34,10 +35,11 @@ def create_app(config_name='development'):
     # Registrar blueprints
     app.register_blueprint(auth_bp)
     app.register_blueprint(donors_bp)
+    app.register_blueprint(web_bp)
     
-    # Rutas básicas
-    @app.route('/')
-    def index():
+    # Rutas básicas de la API
+    @app.route('/api')
+    def api_index():
         return jsonify({
             'message': 'API de Registro de Donantes',
             'version': '1.0',
